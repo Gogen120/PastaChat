@@ -12,7 +12,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - PG_PORT=5432
-      - PG_PASS=elama
+      - PG_PASS=pasta
       - PG_HOST=pasta_chat.postgres
       - PG_USER=postgres
     networks:
