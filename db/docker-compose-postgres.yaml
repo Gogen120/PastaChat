@@ -1,0 +1,20 @@
+version: "3"
+
+networks:
+  pasta_net:
+    external: true
+
+services:
+  db:
+    container_name: pasta_chat.postgres
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - POSTGRES_PASSWORD=pasta
+      - PGPORT=5432
+    networks:
+      - pasta_net
+    ports:
+      - "5435:5432"

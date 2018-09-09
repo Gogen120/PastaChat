@@ -1,0 +1,23 @@
+version: "3"
+
+networks:
+  pasta_net:
+    external: true
+
+services:
+  python:
+    container_name: pasta_chat.flask
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PG_PORT=5432
+      - PG_PASS=elama
+      - PG_HOST=pasta_chat.postgres
+      - PG_USER=postgres
+    networks:
+      - pasta_net
+    ports:
+      - "8003:80"
+    external_links:
+      - pasta_chat.postgres
