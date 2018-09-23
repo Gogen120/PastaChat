@@ -10,6 +10,7 @@ app.config['SECRET_KEY'] = 'super secret key'
 app.config['SESSION_TYPE'] = 'null'
 
 db = SQLAlchemy(app)
+from pasta_chat.models import User, Chat, Message
 migrate = Migrate(app, db)
 
 
