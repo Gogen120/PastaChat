@@ -1,8 +1,8 @@
 FROM python:3.6
 
-COPY . app/
+COPY ./pasta_chat pasta_chat/
 
-WORKDIR app/
+WORKDIR pasta_chat/
 
 ENV TZ Europe/Moscow
 
@@ -14,6 +14,7 @@ ENV SQLALCHEMY_MAX_OVERFLOW=20
 ENV SQLALCHEMY_POOL_SIZE=20
 
 RUN pip install -r requirements.txt
+RUN pip install --upgrade setuptools
 
 ENTRYPOINT ["flask"]
 CMD ["run", "-p", "80", "-h", "0.0.0.0"]

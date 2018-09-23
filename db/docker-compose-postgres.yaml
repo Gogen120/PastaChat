@@ -5,16 +5,16 @@ networks:
     external: true
 
 services:
-  db:
+  pasta_chat.postgres:
     container_name: pasta_chat.postgres
     restart: always
     build:
       context: .
       dockerfile: Dockerfile
     environment:
-      - POSTGRES_PASSWORD=pasta
-      - PGPORT=5432
+      - PG_PASS=pasta
+      - PG_PORT=5432
     networks:
       - pasta_net
     ports:
-      - "5435:5432"
+      - "5432:5432"

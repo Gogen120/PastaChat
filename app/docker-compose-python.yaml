@@ -5,7 +5,7 @@ networks:
     external: true
 
 services:
-  python:
+  pasta_chat.flask:
     container_name: pasta_chat.flask
     build:
       context: .
@@ -17,7 +17,7 @@ services:
       - PG_USER=postgres
     networks:
       - pasta_net
+    volumes:
+      - ./pasta_chat:/pasta_chat
     ports:
       - "8003:80"
-    external_links:
-      - pasta_chat.postgres
