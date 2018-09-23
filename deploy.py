@@ -31,7 +31,6 @@ def run_build(build_type):
         build_docker_container('./app/docker-compose-python.yaml')
 
 
-
 if __name__ == '__main__':
     args = argparse_init()
     if args.network:
