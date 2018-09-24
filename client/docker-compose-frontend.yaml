@@ -1,0 +1,21 @@
+version: "3"
+
+networks:
+  pasta_net:
+    external: true
+
+services:
+  pasta_chat.frontend:
+    container_name: pasta_chat.frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - pasta_net
+    volumes:
+      - ./public:/app/public
+      - ./build:/app/build
+      - ./src:/app/src
+      - ./package.json:/app/package.json
+    ports:
+      - "3000:3000"

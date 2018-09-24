@@ -27,8 +27,10 @@ def build_docker_container(docker_compose_filename, docker_container_name=None):
 
 def run_build(build_type):
     if build_type == 'dev':
+        create_network()
         build_docker_container('./db/docker-compose-postgres.yaml')
         build_docker_container('./app/docker-compose-python.yaml')
+        build_docker_container('./client/docker-compose-frontend.yaml')
 
 
 if __name__ == '__main__':
