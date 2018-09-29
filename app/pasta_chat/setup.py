@@ -9,6 +9,8 @@ setup(
         'sqlalchemy',
         'flask-sqlalchemy',
         'flask_migrate',
-        'psycopg2-binary'
+        'psycopg2-binary',
+        'pytest',
+        'flask-restful'
     ],
 )
