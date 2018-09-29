@@ -24,24 +24,20 @@ def upgrade():
     )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('username', sa.String(length=50), nullable=True),
-    sa.Column('created_at', sa.DateTime(timezone=True), nullable=True),
+    sa.Column('username', sa.String(length=50), nullable=False, unique=True),
+    sa.Column('created_at', sa.DateTime(timezone=True), nullable=False, server_default=sa.text('now()')),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('username')
     )
     op.create_table('message',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('content', sa.Text(), nullable=True),
-    sa.Column('created_at', sa.DateTime(timezone=True), nullable=True),
-    sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.Column('content', sa.Text(), nullable=False),
+    sa.Column('created_at', sa.DateTime(timezone=True), nullable=False, server_default=sa.text('now()')),
+    sa.Column('user_id', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('chat_user',
-    sa.Column('chat_id', sa.Integer(), nullable=False),
-    sa.Column('message_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['chat_id'], ['chat.id'], ),
-    sa.ForeignKeyConstraint(['message_id'], ['message.id'], ),
+    sa.Column('chat_id', sa.Integer(), nullable=True),
+    sa.Column('message_id', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('chat_id', 'message_id')
     )
     # ### end Alembic commands ###
