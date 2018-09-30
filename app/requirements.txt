@@ -4,3 +4,4 @@ flask-migrate
 psycopg2-binary
 pytest
 flask-restful
+flask-marshmallow

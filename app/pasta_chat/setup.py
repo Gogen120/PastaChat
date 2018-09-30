@@ -11,6 +11,7 @@ setup(
         'flask_migrate',
         'psycopg2-binary',
         'pytest',
-        'flask-restful'
+        'flask-restful',
+        'flask-marshmallow'
     ],
 )
