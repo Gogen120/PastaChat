@@ -5,7 +5,7 @@ from flask_restful import Api
 from flask-marshmallow import Marshmallow
 
 app = Flask(__name__)
-ma  Marshmallow(app)
+ma = Marshmallow(app)
 api = Api(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://{}:{}@{}:{}/postgres'.format('postgres', 'pasta', 'pasta_chat.postgres', '5432')

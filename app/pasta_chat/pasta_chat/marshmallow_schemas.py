@@ -1,6 +1,13 @@
-from pasta_chat import ma
+from marshmallow import fields, Schema
 
 
-class UserSchema(ma.Schema):
-    class Meta:
-        fields = ('username', 'created_at')
+class UserSchema(Schema):
+    id = fields.Int()
+    username = fields.Str()
+    messages = fields.Nested('MessageSchema')
+
+
+class MessageSchema(Schema):
+    id = fields.Int()
+    content = fields.Str()
+    user_id = fields.Int()
