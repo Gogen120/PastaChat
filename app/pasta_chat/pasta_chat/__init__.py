@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_restful import Api
-from flask-marshmallow import Marshmallow
+from flask_marshmallow import Marshmallow
 
 app = Flask(__name__)
 ma = Marshmallow(app)

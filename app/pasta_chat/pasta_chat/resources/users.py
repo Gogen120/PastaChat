@@ -7,13 +7,16 @@ from pasta_chat.marshmallow_schemas import UserSchema
 class UserResource(Resource):
     def get(self, user_id):
         user = db.session.query(User).get(user_id)
-        user_json = UserSchema().jsonify(user)
+        user_json = UserSchema().dump(user)
         return user_json
 
 
 class UserListResource(Resource):
-    def post(self, username):
-        new_user = User(username)
+    def get(self):
+        pass
+
+    def post(self, user_data: dict):
+        new_user = User(**user_data)
 
         db.session.add(new_user)
         db.session.commit()
