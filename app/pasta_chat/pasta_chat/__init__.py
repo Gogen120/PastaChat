@@ -8,13 +8,14 @@ app = Flask(__name__)
 ma = Marshmallow(app)
 api = Api(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://{}:{}@{}:{}/postgres'.format('postgres', 'pasta', 'pasta_chat.postgres', '5432')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'super secret key'
-app.config['SESSION_TYPE'] = 'null'
+from pasta_chat.config import apply_configs
+
+apply_configs(app)
 
 db = SQLAlchemy(app)
+
 from pasta_chat.models import User, Chat, Message
+
 migrate = Migrate(app, db)
 
 from pasta_chat.resources.users import UserResource, UserListResource
