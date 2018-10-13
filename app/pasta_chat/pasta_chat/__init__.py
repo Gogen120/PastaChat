@@ -24,10 +24,5 @@ api.add_resource(UserResource, '/api/v1/users/<int:user_id>')
 api.add_resource(UserListResource, '/api/v1/users')
 
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-
 if __name__ == '__main__':
     app.run()
