@@ -26,6 +26,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=50), nullable=False, unique=True),
     sa.Column('created_at', sa.DateTime(timezone=True), nullable=False, server_default=sa.text('now()')),
+    sa.Column('chat_id', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     )
     op.create_table('message',
@@ -33,12 +34,8 @@ def upgrade():
     sa.Column('content', sa.Text(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), nullable=False, server_default=sa.text('now()')),
     sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.PrimaryKeyConstraint('id')
-    )
-    op.create_table('chat_user',
     sa.Column('chat_id', sa.Integer(), nullable=True),
-    sa.Column('message_id', sa.Integer(), nullable=True),
-    sa.PrimaryKeyConstraint('chat_id', 'message_id')
+    sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
 
