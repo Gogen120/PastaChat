@@ -2,13 +2,6 @@ import argparse
 import subprocess
 
 
-def argparse_init():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--network', '-n', action='store_true')
-    parser.add_argument('--build', '-b', nargs=1, choices=['dev'])
-    return parser.parse_args()
-
-
 def create_network():
     subprocess.run(['docker network create pasta_net'], shell=True)
 
@@ -29,13 +22,27 @@ def apply_migrations():
     subprocess.run(['docker exec -it pasta_chat.flask flask db upgrade'], shell=True)
 
 
+def run_temp_functions():
+    subprocess.run(['docker exec -it pasta_chat.flask python pasta_chat/temp/__init__.py'], shell=True)
+
+
 def run_build(build_type):
     if build_type == 'dev':
         create_network()
         build_docker_container('./db/docker-compose-postgres.yaml')
         build_docker_container('./app/docker-compose-python.yaml')
-        build_docker_container('./client/docker-compose-frontend.yaml')
+        # build_docker_container('./client/docker-compose-frontend.yaml')
         apply_migrations()
+        run_temp_functions()
+
+
+def argparse_init():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--network', '-n', action='store_true')
+    parser.add_argument('--build', '-b', nargs=1, choices=['dev'])
+    parser.add_argument('--migrations', '-m', action='store_true')
+    parser.add_argument('--temp', '-t', action='store_true')
+    return parser.parse_args()
 
 
 if __name__ == '__main__':
@@ -44,3 +51,7 @@ if __name__ == '__main__':
         create_network()
     elif args.build:
         run_build(args.build[0])
+    elif args.migrations:
+        apply_migrations()
+    elif args.temp:
+        run_temp_functions()
