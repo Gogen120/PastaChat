@@ -12,6 +12,8 @@ setup(
         'psycopg2-binary',
         'pytest',
         'flask-restful',
-        'flask-marshmallow'
+        'flask-marshmallow',
+        'marshmallow-sqlalchemy',
+        'docker'
     ],
 )
