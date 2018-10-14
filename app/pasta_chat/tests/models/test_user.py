@@ -2,7 +2,7 @@ import pytest
 
 from pasta_chat import db
 from pasta_chat.models import User
-from users import create_example_user_data
+from ..data.users import create_example_user_data
 
 
 @pytest.fixture(autouse=True)
