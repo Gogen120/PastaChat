@@ -52,6 +52,10 @@ def run_temp_functions():
     print(output.decode('utf-8'))
 
 
+def run_tests():
+    subprocess.run([f'docker exec {FLASK_CONTAINER} pytest'], shell=True)
+
+
 def run_build(build_type):
     if build_type == 'dev':
         create_network()
@@ -68,6 +72,7 @@ def argparse_init():
     parser.add_argument('--build', '-b', nargs=1, choices=['dev'])
     parser.add_argument('--migrations', '-m', action='store_true')
     parser.add_argument('--temp', '-t', action='store_true')
+    parser.add_argument('--action', '-a', action='store_true')
     return parser.parse_args()
 
 
@@ -81,3 +86,5 @@ if __name__ == '__main__':
         apply_migrations()
     elif args.temp:
         run_temp_functions()
+    elif args.action:
+        run_tests()
