@@ -11,10 +11,10 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      - PG_PORT=5432
-      - PG_PASS=pasta
-      - PG_HOST=pasta_chat.postgres
-      - PG_USER=postgres
+      - PG_PORT=${PG_PORT}
+      - PG_PASS=${PG_PASS}
+      - PG_HOST=${PG_HOST}
+      - PG_USER=${PG_USER}
     networks:
       - pasta_net
     volumes:

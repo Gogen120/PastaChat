@@ -19,5 +19,5 @@ def apply_sqlalchemy_configs(app):
 
 
 def apply_non_categorized_configs(app):
-    app.config['SECRET_KEY'] = 'super secret key'
+    app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
     app.config['SESSION_TYPE'] = 'null'
