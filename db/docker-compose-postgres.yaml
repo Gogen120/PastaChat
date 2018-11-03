@@ -12,9 +12,9 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      - PG_PASS=pasta
-      - PG_PORT=5432
+      - PG_PASS=${PG_PASS}
+      - PG_PORT=${PG_PORT}
     networks:
       - pasta_net
     ports:
-      - "5432:5432"
+      - "5432:${PG_PORT}"
