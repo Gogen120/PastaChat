@@ -1,9 +1,10 @@
+import os
 import argparse
 import subprocess
 import docker
 
 FLASK_CONTAINER = 'pasta_chat.flask'
-DOCKER_NETWORK = 'pasta_net'
+DOCKER_NETWORK = os.environ['DOCKER_NETWORK']
 
 
 def get_container_by_name(container_name):

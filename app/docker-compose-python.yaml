@@ -15,6 +15,7 @@ services:
       - PG_PASS=${PG_PASS}
       - PG_HOST=${PG_HOST}
       - PG_USER=${PG_USER}
+      - SECRET_KEY=${SECRET_KEY}
     networks:
       - pasta_net
     volumes:
